@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Meus Pedidos</h2>
+{% if pedidos %}
+    {% for pedido in pedidos %}
+        <div class="card mb-4">
+            <div class="card-header">
+                Pedido ID: {{ pedido.id }} | Data: {{ pedido.criado_em|date:"d/m/Y H:i" }} | Pagamento: {{ pedido.forma_pagamento }}
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for item in pedido.itens.all %}
+                    <li class="list-group-item">{{ item.quantidade }} x {{ item.produto.nome }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+{% else %}
+    <div class="alert alert-info">Você ainda não fez nenhum pedido.</div>
+{% endif %}
+{% endblock %}

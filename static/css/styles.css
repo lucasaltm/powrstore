@@ -1,0 +1,22 @@
+body {
+    padding-top: 70px;
+}
+
+header img {
+    max-height: 156px;
+}
+
+.list-group-item.active > a {
+    color: #fff;
+}
+
+.list-group-item > a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.product-image {
+    width: 320px;
+    height: 400px;
+    object-fit: cover;
+}

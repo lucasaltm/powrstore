@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Finalização do Pedido</h2>
+<form method="post" class="mt-4">
+    {% csrf_token %}
+    <p>Escolha a forma de pagamento:</p>
+    <div class="form-check">
+        <input type="radio" name="forma_pagamento" value="Cartão de Crédito" id="cartao" class="form-check-input" checked>
+        <label for="cartao" class="form-check-label">Cartão de Crédito</label>
+    </div>
+    <div class="form-check">
+        <input type="radio" name="forma_pagamento" value="Boleto Bancário" id="boleto" class="form-check-input">
+        <label for="boleto" class="form-check-label">Boleto Bancário</label>
+    </div>
+    <div class="form-check">
+        <input type="radio" name="forma_pagamento" value="PIX" id="pix" class="form-check-input">
+        <label for="pix" class="form-check-label">PIX</label>
+    </div>
+    <button type="submit" class="btn btn-success mt-3">Confirmar Pedido</button>
+</form>
+{% endblock %}

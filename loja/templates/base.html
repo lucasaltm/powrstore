@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Powr Store - Supplement Store</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <!-- Imagem no topo -->
+    <header class="bg-light">
+        <div class="container">
+            <img src="{% static 'imagens/powerstore.png' %}" alt="Logo" class="mt-3">
+
+            {% if user.is_authenticated %}
+                <p class="text-right">Olá, {{ user.username }} | <a href="{% url 'logout' %}">Sair</a></p>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="{% url 'lista_produtos' %}">Produtos</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'carrinho' %}">Carrinho</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'lista_pedidos' %}">Meus Pedidos</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            {% else %}
+                <div class="text-right">
+                    <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+                </div>
+            {% endif %}
+        </div>
+    </header>
+    <main class="container mt-4">
+        {% block content %}{% endblock %}
+    </main>
+    <!-- Bootstrap JS (Dependências Popper.js e jQuery) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

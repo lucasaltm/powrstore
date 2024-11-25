@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Login</h2>
+{% if erro %}
+    <div class="alert alert-danger">{{ erro }}</div>
+{% endif %}
+<form method="post" class="mt-4">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="username">CPF/CNPJ:</label>
+        <input type="text" name="username" id="username" class="form-control" placeholder="Digite seu CPF ou CNPJ">
+    </div>
+    <div class="form-group">
+        <label for="password">Senha:</label>
+        <input type="password" name="password" id="password" class="form-control" placeholder="Digite sua senha">
+    </div>
+    <button type="submit" class="btn btn-primary">Entrar</button>
+</form>
+{% endblock %}

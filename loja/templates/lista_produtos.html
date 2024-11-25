@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+		<!-- Dropdown de Categorias -->
+		<div class="mb-4">
+			<form method="get" action="{% url 'lista_produtos' %}">
+				<div class="form-row align-items-center">
+					<div class="col-auto">
+						<label class="sr-only" for="categoria">Categoria</label>
+						<select name="categoria" id="categoria" class="form-control mb-2">
+							<option value="">Todas as Categorias</option>
+							{% for categoria in categorias %}
+								<option value="{{ categoria.slug }}" {% if categoria == categoria_selecionada %}selected{% endif %}>{{ categoria.nome }}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<div class="col-auto">
+						<button type="submit" class="btn btn-primary mb-2">Filtrar</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+        <div class="row">
+            {% for produto in produtos %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        {% if produto.imagem %}
+                            <img src="{{ produto.imagem.url }}" class="card-img-top product-image" alt="{{ produto.nome }}">
+                        {% else %}
+                            <img src="{% static 'imagens/placeholder.png' %}" class="card-img-top product-image" alt="Imagem indisponível">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ produto.nome }}</h5>
+                            <p class="card-text">{{ produto.descricao|truncatechars:100 }}</p>
+                            <p class="card-text"><strong>Preço: R$ {{ produto.preco }}</strong></p>
+                            <form action="{% url 'add_carrinho' produto.id %}" method="post" class="form-inline">
+                                {% csrf_token %}
+                                <div class="form-group mb-2">
+                                    <label for="quantidade{{ produto.id }}" class="sr-only">Quantidade</label>
+                                    <input type="number" name="quantidade" id="quantidade{{ produto.id }}" value="1" min="1" class="form-control mr-2" style="width: 80px;">
+                                </div>
+                                <button type="submit" class="btn btn-success mb-2">Adicionar ao Carrinho</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <div class="alert alert-info">Nenhum produto encontrado nesta categoria.</div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
