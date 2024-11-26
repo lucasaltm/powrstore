@@ -3,7 +3,7 @@ body {
 }
 
 header img {
-    max-height: 156px;
+    max-height: 100px;
 }
 
 .list-group-item.active > a {
