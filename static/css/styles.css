@@ -16,7 +16,7 @@ header img {
 }
 
 .product-image {
-    width: 220px;
-    height: 300px;
+    width: 160px;
+    height: 200px;
     object-fit: cover;
 }
