@@ -51,7 +51,7 @@ http://127.0.0.1:8000/
 
 ## Deploy
 
-Deploy realizado no Heroku na URL:. 
+Deploy realizado na URL:
 ```bash
 https://powrstore-39d6449129f7.herokuapp.com/
  ```
