@@ -4,7 +4,7 @@
 Este projeto é uma aplicação Django para gerenciar pedidos e exibir uma loja virtual.
 
 ## Requisitos
-- Python ***3.13.0*** ou superior
+- Python **3.13.0** ou superior
 - pip (gerenciador de pacotes do Python)
 - Virtualenv (recomendado)
 - SQLite (pré-instalado com Python)
